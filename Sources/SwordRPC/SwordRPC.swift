@@ -84,6 +84,8 @@ public class SwordRPC {
   }
 
   public func disconnect() {
+    // one more time before we go
+    self.updatePresence()
     guard let socket = self.socket else {
       print("[SwordRPC] Not connected")
       return
