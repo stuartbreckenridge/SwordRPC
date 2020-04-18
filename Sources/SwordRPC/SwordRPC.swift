@@ -83,6 +83,15 @@ public class SwordRPC {
     print("[SwordRPC] Discord not detected")
   }
 
+  public func disconnect() {
+    guard let socket = self.socket else {
+      print("[SwordRPC] Not connected")
+      return
+    }
+    socket.close()
+    self.delegate?.swordRPCDidDisconnect(self, code: nil, message: nil)
+  }
+
   public func setPresence(_ presence: RichPresence) {
     self.presence = presence
   }

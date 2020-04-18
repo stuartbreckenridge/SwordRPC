@@ -43,7 +43,7 @@ extension SwordRPC {
   func receive() {
     self.worker.asyncAfter(
       deadline: .now() + .milliseconds(self.handlerInterval)
-    ) { [unowned self] in
+    ) {
       guard let isConnected = self.socket?.isConnected, isConnected else {
         self.disconnectHandler?(self, nil, nil)
         self.delegate?.swordRPCDidDisconnect(self, code: nil, message: nil)
