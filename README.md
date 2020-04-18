@@ -4,7 +4,8 @@
 
 ## Changes in this fork
 - Added a `disconnect()` function
-  - This isn't properly tested but it probably works...?
+  - There seems to be an issue with re`connect()`ing after a `disconnect()`
+  - Workaround is to just create a new `SwordRPC` object
 - Changed timestamps to use integer seconds
   - The Discord API expects timestamps to be integer, and will behave strangely if passed a non-integer value
 - Presence update requests to the API are made when the presence is changed, instead of every 15 seconds
