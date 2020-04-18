@@ -28,7 +28,7 @@ extension SwordRPC {
   func send(_ msg: String, _ op: OP) throws {
     let payload = msg.data(using: .utf8)!
 
-    var buffer = UnsafeMutableRawBufferPointer.allocate(count: 8 + payload.count)
+    var buffer = UnsafeMutableRawBufferPointer.allocate(byteCount: 8 + payload.count, alignment: 1)
 
     defer { buffer.deallocate() }
 
@@ -185,15 +185,21 @@ extension SwordRPC {
     }
   }
 
+  // Instead of queuing this block to run every 15 seconds
+  // let setPresence() call this function so that presence can be updated on demand.
+
+  // The Discord API has presence update limit of once per 15 seconds
+  // the API will enforce this limit, so we don't have to do it
+
   func updatePresence() {
-    self.worker.asyncAfter(deadline: .now() + .seconds(15)) { [unowned self] in
-      self.updatePresence()
-
-      guard let presence = self.presence else {
-        return
-      }
-
-      self.presence = nil
+//    self.worker.asyncAfter(deadline: .now() + .seconds(15)) { [unowned self] in
+//      self.updatePresence()
+//
+//      guard let presence = self.presence else {
+//        return
+//      }
+//
+//      self.presence = nil
 
       let json = """
           {
@@ -207,7 +213,7 @@ extension SwordRPC {
           """
 
       try? self.send(json, .frame)
-    }
+//    }
   }
 
 }

@@ -94,6 +94,20 @@ public class SwordRPC {
 
   public func setPresence(_ presence: RichPresence) {
     self.presence = presence
+
+    // convert timestamps from Double to Int
+    // the Discord API behaves in unexpected ways if we don't pass it an Int
+    
+    if let presenceStart = self.presence!.timestamps.start {
+        self.presence!.timestamps.start = Date(timeIntervalSince1970: presenceStart.timeIntervalSince1970.rounded())
+    }
+
+    if let presenceEnd = self.presence!.timestamps.end {
+        self.presence!.timestamps.end = Date(timeIntervalSince1970: presenceEnd.timeIntervalSince1970.rounded())
+    }
+
+    // update presence
+    updatePresence()
   }
 
   public func reply(to request: JoinRequest, with reply: JoinReply) {
