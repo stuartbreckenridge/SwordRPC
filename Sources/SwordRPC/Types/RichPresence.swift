@@ -10,11 +10,11 @@ import Foundation
 
 public struct RichPresence: Encodable {
   public var assets = Assets()
-  public var details = ""
+  public var details: String?
   public var instance = true
   public var party = Party()
   public var secrets = Secrets()
-  public var state = ""
+  public var state: String?
   public var timestamps = Timestamps()
   
   public init() {}
