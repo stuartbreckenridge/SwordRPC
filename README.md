@@ -15,6 +15,7 @@
 - Fixed a crash that would occur upon connecting to the Discord API
 - The `.details`  and `.state` properties of `RichPresence` are now `String?` instead of `String`.
   - This is because the JSON Encoder generates  `"details": ""` for an empty `String`, which appears to break the Discord API. Using an optional `String`, the key-value pair is not encoded at all.
+- `connect()` returns a `Bool` indicating whether or not the connection was successful
 
 ## Requirements
 1. macOS, Linux
