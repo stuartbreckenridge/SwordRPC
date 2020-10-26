@@ -14,7 +14,7 @@
 - Updated some deprecated functions for compatibility with Swift 5
 - Fixed a crash that would occur upon connecting to the Discord API
 - The `.details`  and `.state` properties of `RichPresence` are now `String?` instead of `String`.
- - This is because the JSON Encoder generates  `"details": ""` for an empty `String`, which appears to break the Discord API. Using an optional `String`, the key-value pair is not encoded at all.
+  - This is because the JSON Encoder generates  `"details": ""` for an empty `String`, which appears to break the Discord API. Using an optional `String`, the key-value pair is not encoded at all.
 
 ## Requirements
 1. macOS, Linux
