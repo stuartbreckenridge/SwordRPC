@@ -57,12 +57,12 @@ public class SwordRPC {
     self.registerUrl()
   }
 
-  public func connect() {
+  public func connect() -> Bool {
     let tmp = NSTemporaryDirectory()
 
     guard let socket = self.socket else {
       print("[SwordRPC] Unable to connect")
-      return
+      return false
     }
 
     for i in 0 ..< 10 {
@@ -76,11 +76,11 @@ public class SwordRPC {
         self.subscribe("ACTIVITY_SPECTATE")
         self.subscribe("ACTIVITY_JOIN_REQUEST")
 
-        return
+        return true
       }
     }
-
     print("[SwordRPC] Discord not detected")
+    return false
   }
 
   public func disconnect() {
