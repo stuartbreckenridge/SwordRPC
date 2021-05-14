@@ -12,14 +12,12 @@ let package = Package(
     )
   ],
   dependencies: [
-    .package(url: "https://github.com/IBM-Swift/BlueSocket.git", from: "1.0.0")
+    .package(url: "https://github.com/IBM-Swift/BlueSocket.git", from: .exact("0.12.78"))
   ],
   targets: [
     .target(
       name: "SwordRPC",
-      dependencies: [
-        .product(name: "Socket", package: "Socket")
-      ]
+      dependencies: ["Socket"]
     )
   ]
 )
